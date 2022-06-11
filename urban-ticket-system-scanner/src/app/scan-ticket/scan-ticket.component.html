@@ -1,32 +1,33 @@
 <div class="container">
-    <div class="row"><h1>Scan your ticket</h1></div>
-    <hr/>
     <div class="row">
-        <div class="col-3">Select bus number:</div>
-        <div class="col-3">
-        <select class="form-select" [(ngModel)]="selectedBus">
-            <option *ngFor="let bus of buses" [ngValue]="bus">
-                {{bus}}
-            </option>
-        </select>
+        <div class="col-6">
+            <h1>Scan your ticket</h1>   
         </div>
-    </div>
-    <hr/>
-    <div class="row">
-        <div class = "col-2">Enter ticket code:</div>
-        <div class = "col-4">
-            <input class="form-control"  [(ngModel)] = "ticketCode"> 
+        <div  class="col-6 settings">
+            <fa-icon [icon]="faGear" (click)="openSettings()" size="3x"></fa-icon>  
         </div>
-    </div>
-    <button class="btn btn-primary" (click)="scanTicket()">Scan ticket</button>    
-    <hr/>
-    Scan your ticket:
-    <div class="scanner-preview">
-        <select class="form-select" [(ngModel)]="selectedDevice">
-            <option *ngFor="let device of availableDevices" [ngValue]="device">
-                {{device.label}}
-            </option>
-          </select>
-        <zxing-scanner (scanSuccess)="scanSuccessHandler($event)"  [(device)]="selectedDevice" ></zxing-scanner>
+    <hr/>    
+    <div class="ticketValidatorBorder" >
+        <div class="ticketValidator">
+            <div class="ticketValidatorCenter">
+                <fa-icon [icon]="faBus" size="8x" ></fa-icon>
+                <div class="scanText">SCAN YOUR TICKET</div>
+                <fa-icon [icon]="faCaretSquareDown" size="4x"></fa-icon>
+            </div>
+            <div>
+            <div>
+                <input class="codeTextbox"  [(ngModel)] = "ticketCode">
+            </div>
+            <div>
+                <button class="btn btn-primary" (click)="scanTicket()">Scan ticket</button>    
+            </div>
+        </div>
+            <div class="qrCode" (click)="openQrCodeScanner()">
+                Use qr code
+                <div>
+                <img src="../../assets/barcode.gif">
+            </div>
+            </div>
+        </div>
     </div>
 </div>

@@ -3,6 +3,11 @@ import { MatDialog } from '@angular/material/dialog';
 import { PostScanTicket } from './data/post-scan-ticket';
 import { PopupTicketValidationComponent } from './popup-ticket-validation/popup-ticket-validation.component';
 import { ScanTicketService } from './services/scan-ticket.service';
+import { faBus, faCaretSquareDown, faGear} from '@fortawesome/free-solid-svg-icons';
+import { QrCodeScannerComponent } from './qr-code-scanner/qr-code-scanner.component';
+import { SelectBusComponent } from './select-bus/select-bus.component';
+import { GetBusNumber } from './data/get-bus-numbers';
+import { BusListAndSelectedOne } from './data/bus-list-and-selected-one';
 
 @Component({
   selector: 'app-scan-ticket',
@@ -13,33 +18,36 @@ export class ScanTicketComponent implements OnInit {
 
   constructor(private scanTicketService:ScanTicketService, public dialog: MatDialog) { }
 
-  availableDevices: MediaDeviceInfo[] = [];
+
+  faBus = faBus;
+  faCaretSquareDown = faCaretSquareDown;
+  faGear = faGear;
+
   ticketCode:string = "";
-  selectedDevice: MediaDeviceInfo;
-  buses = ["234","435435","432532","KL324234"];
-  selectedBus = this.buses[0];
+  buses:GetBusNumber[] = [{id:1,busNumber:"1"}, {id:2,busNumber:"2"}, {id:3,busNumber:"3"},{id:4,busNumber:"4"}];
+  selectedBus:GetBusNumber = this.buses[0];
 
   ngOnInit(): void {
-    this.loadAvailableCameras();
   }
-  scanSuccessHandler(scannerResponse : any){
-    this.ticketCode = scannerResponse;
+
+  openQrCodeScanner(){
+    const qrCodeSannerDialog = this.dialog.open(QrCodeScannerComponent);
+
+    qrCodeSannerDialog.afterClosed().subscribe(res => {
+      console.log(res);
+      this.ticketCode = res;
+    });
   }
-  
-  loadAvailableCameras(){
-    if (!navigator.mediaDevices || !navigator.mediaDevices.enumerateDevices) {
-      console.log("enumerateDevices() not supported.");
-      return;
-    }
-    navigator.mediaDevices.enumerateDevices()
-    .then(devices => {
-      devices.filter(device => device.kind == 'videoinput').forEach(device => {
-        this.availableDevices.push(device);
-      });
-    console.log(this.availableDevices);
-    })
-    .catch(function(err) {
-      console.log(err.name + ": " + err.message);
+
+  openSettings(){
+    const selectedBusDialog = this.dialog.open(SelectBusComponent,{data: {availableBus:this.buses, selectedBus:this.selectedBus} as BusListAndSelectedOne});
+
+    selectedBusDialog.afterClosed().subscribe(res => {
+      if(res != null){
+        this.selectedBus = res;
+        console.log(res);
+        console.log(typeof(res));
+      }
     });
   }
 
@@ -47,11 +55,11 @@ export class ScanTicketComponent implements OnInit {
     if(this.ticketCode == "")
       console.log("wypełnij dane");
     else
-    this.scanTicketService.scanTicket({ticketCode:this.ticketCode, busNumber:this.selectedBus} as PostScanTicket)
+    this.scanTicketService.scanTicket({ticketCode:this.ticketCode, busId:this.selectedBus.id} as PostScanTicket)
     .subscribe(res => 
       {
-        var dialogRef = this.dialog.open(PopupTicketValidationComponent,{data : res});
+        const dialogRef = this.dialog.open(PopupTicketValidationComponent,{data : res});
       });
-    var dialogRef = this.dialog.open(PopupTicketValidationComponent);
+      const dialogRef = this.dialog.open(PopupTicketValidationComponent);
   }
 }

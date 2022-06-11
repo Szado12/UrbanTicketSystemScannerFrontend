@@ -2,3 +2,64 @@
     width: 400px;
     height: 400px;
 }
+.ticketValidatorBorder{
+    margin: auto;
+    width: 500px;
+    height: 700px;
+    background-color: #e0b607ff;
+    border-radius: 2em;
+    border: solid rgb(179, 144, 6) 2px;
+    padding-top: 25px;
+}
+.ticketValidator{
+    margin: auto;
+    padding-top: 25px;
+    width: 450px;
+    height: 650px;
+    border-radius: 2em;
+    background-color: rgb(48, 48, 48);
+    text-align: center;
+}
+.ticketValidatorCenter{
+    margin: auto;
+    padding: 25px;
+    text-align: center;
+    width: 300px;
+    height: 400px;
+    background-color: black;
+    color:rgb(185, 204, 255);
+}
+.scanText{
+    font-size: 2em;
+    padding-bottom: 30px;
+}
+.codeTextbox{
+    margin-top: 25px;
+    height: 2.5em;
+    font-size: 1.5em;
+    border-radius: 10px;
+    background-color:rgb(185, 204, 255);
+    color:rgb(48, 48, 48);
+    width: 200px;
+    text-align: center;
+}
+.btn{
+    margin-top: 10px;
+    background-color: #e0b607ff;
+    color:rgb(48, 48, 48);
+    border: black 2px solid;
+}
+.qrCode{
+    cursor: pointer;
+    font-size: 0.8em;
+    position: relative;
+    text-align: center;
+    color:rgb(185, 204, 255);
+    top:-110px;
+    left:340px;
+    width: 100px;
+}
+.settings{
+    text-align: right;
+    cursor: pointer;
+}
