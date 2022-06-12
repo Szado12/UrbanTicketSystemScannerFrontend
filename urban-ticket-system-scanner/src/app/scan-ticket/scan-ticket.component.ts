@@ -55,11 +55,11 @@ export class ScanTicketComponent implements OnInit {
     if(this.ticketCode == "")
       console.log("wypełnij dane");
     else
-    this.scanTicketService.scanTicket({ticketCode:this.ticketCode, busId:this.selectedBus.id} as PostScanTicket)
+    this.scanTicketService.scanTicket({ticketUuid:this.ticketCode, validatedInBus:this.selectedBus.id} as PostScanTicket)
     .subscribe(res => 
       {
         const dialogRef = this.dialog.open(PopupTicketValidationComponent,{data : res});
+        console.log(res);
       });
-      const dialogRef = this.dialog.open(PopupTicketValidationComponent);
   }
 }

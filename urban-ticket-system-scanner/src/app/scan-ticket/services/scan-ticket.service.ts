@@ -12,9 +12,10 @@ export class ScanTicketService {
   @Inject('BASE_API_URL') private baseUrl: string) {}
 
   
-  scanTicketUrl:string = "/scanTicket";
+  scanTicketUrl:string = "/ticket/validate";
 
   scanTicket(data:PostScanTicket){
-    return this.http.post(this.baseUrl+this.scanTicketUrl,data);
+    console.log(this.baseUrl+this.scanTicketUrl);
+    return this.http.put(this.baseUrl+this.scanTicketUrl,data);
   }
 }
