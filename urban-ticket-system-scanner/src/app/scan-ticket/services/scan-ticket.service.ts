@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
+import { Observable } from 'rxjs/internal/Observable';
 import { PostScanTicket } from '../data/post-scan-ticket';
+import { TicketData } from '../data/ticket-data';
 
 @Injectable({
   providedIn: 'root'
@@ -14,8 +16,7 @@ export class ScanTicketService {
   
   scanTicketUrl:string = "/ticket/validate";
 
-  scanTicket(data:PostScanTicket){
-    console.log(this.baseUrl+this.scanTicketUrl);
-    return this.http.put(this.baseUrl+this.scanTicketUrl,data);
+  scanTicket(data:PostScanTicket) : Observable<TicketData>{
+    return this.http.put<TicketData>(this.baseUrl+this.scanTicketUrl,data);
   }
 }

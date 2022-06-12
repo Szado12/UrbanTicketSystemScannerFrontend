@@ -8,6 +8,7 @@ import { QrCodeScannerComponent } from './qr-code-scanner/qr-code-scanner.compon
 import { SelectBusComponent } from './select-bus/select-bus.component';
 import { GetBusNumber } from './data/get-bus-numbers';
 import { BusListAndSelectedOne } from './data/bus-list-and-selected-one';
+import { PopupErrorValidationComponent } from './popup-error-validation/popup-error-validation.component';
 
 @Component({
   selector: 'app-scan-ticket',
@@ -58,8 +59,14 @@ export class ScanTicketComponent implements OnInit {
     this.scanTicketService.scanTicket({ticketUuid:this.ticketCode, validatedInBus:this.selectedBus.id} as PostScanTicket)
     .subscribe(res => 
       {
-        const dialogRef = this.dialog.open(PopupTicketValidationComponent,{data : res});
-        console.log(res);
-      });
+        this.dialog.open(PopupTicketValidationComponent,{data : res});
+      },
+       error => {
+        var errorMessage = error.error.message;
+        if(errorMessage == "No value present")
+          errorMessage = "Wrong ticket code";
+
+        this.dialog.open(PopupErrorValidationComponent,{data:errorMessage});
+      })
   }
 }

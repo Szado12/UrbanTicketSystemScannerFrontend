@@ -1,1 +1,17 @@
-<p>popup-ticket-validation works!</p>
+<div mat-dialog-title fxLayout="row">
+    <h3 fxFlex="80">Ticket validated</h3>
+  </div>
+  <mat-dialog-content class="mat-typography">
+  
+      <div *ngFor="let detail of details">
+        <div [fxShow]="detail != null" fxLayout="row" fxLayoutGap="20px">
+          <div fxFlex="50%">
+         <p><strong> {{detail?.title}} </strong></p>
+          </div>
+          <div fxFlex="50%">
+              <p> {{detail?.selector}}</p>
+        
+            </div>
+        </div>
+      </div>
+  </mat-dialog-content>

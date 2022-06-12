@@ -13,6 +13,7 @@ import { MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/d
 import { SelectBusComponent } from './scan-ticket/select-bus/select-bus.component';
 import { QrCodeScannerComponent } from './scan-ticket/qr-code-scanner/qr-code-scanner.component';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import { PopupErrorValidationComponent } from './scan-ticket/popup-error-validation/popup-error-validation.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
     ScanTicketComponent,
     PopupTicketValidationComponent,
     SelectBusComponent,
-    QrCodeScannerComponent
+    QrCodeScannerComponent,
+    PopupErrorValidationComponent
   ],
   imports: [
     BrowserModule,
