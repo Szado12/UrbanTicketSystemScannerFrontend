@@ -25,14 +25,18 @@ jobs:
         
     - name: run npm
       working-directory: ./urban-ticket-system-scanner
-    - run: |
+      run: |
           npm install --save
           npm run gh-pages
+    - name: run test
+      working-directory: ./urban-ticket-system-scanner
     - run: |
         export DISPLAY=:99
         chromedriver --url-base=/wd/hub &
         sudo Xvfb -ac :99 -screen 0 1280x1024x24 > /dev/null 2>&1 & # optional
         npm run test
+      env:
+        CI: true
     - name: publish
       uses: JamesIves/github-pages-deploy-action@v4.3.3
       with:
