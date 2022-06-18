@@ -29,4 +29,5 @@ jobs:
       working-directory: ./urban-ticket-system-scanner
       run: |
           npm install --save
-          npm run build
+          npm run gh-pages
+    
