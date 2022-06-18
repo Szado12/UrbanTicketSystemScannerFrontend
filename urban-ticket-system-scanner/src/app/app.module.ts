@@ -36,7 +36,7 @@ import { PopupErrorValidationComponent } from './scan-ticket/popup-error-validat
 		ZXingScannerModule,
     AppRoutingModule
   ],
-  providers: [ { provide: 'BASE_API_URL', useValue: 'http://localhost:8080' }],
+  providers: [ { provide: 'BASE_API_URL', useValue: 'https://urban-ticket-system-backend.herokuapp.com' }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
