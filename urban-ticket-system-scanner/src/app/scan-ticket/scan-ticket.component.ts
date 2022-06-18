@@ -62,7 +62,7 @@ export class ScanTicketComponent implements OnInit {
         this.dialog.open(PopupTicketValidationComponent,{data : res});
       },
        error => {
-        var errorMessage = error.error.message;
+        var errorMessage = error.error;
         if(errorMessage == "No value present")
           errorMessage = "Wrong ticket code";
 
