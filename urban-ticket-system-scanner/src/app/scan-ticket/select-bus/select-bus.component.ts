@@ -35,7 +35,7 @@ export class SelectBusComponent implements OnInit {
     return bus && bus.busNumber ? bus.busNumber : '';
   }
 
-  private _filter(str: string): GetBusNumber[] {
+  _filter(str: string): GetBusNumber[] {
     const filterValue = str.toLowerCase();
     return this.buses.filter(bus => bus.busNumber.toLowerCase().includes(filterValue));
   }
