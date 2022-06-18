@@ -17,7 +17,7 @@ import { PopupErrorValidationComponent } from './popup-error-validation/popup-er
 })
 export class ScanTicketComponent implements OnInit {
 
-  constructor(private scanTicketService:ScanTicketService, public dialog: MatDialog) { }
+  constructor(private scanTicketService: ScanTicketService, public dialog: MatDialog) { }
 
 
   faBus = faBus;
