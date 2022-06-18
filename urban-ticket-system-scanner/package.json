@@ -5,9 +5,9 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
-    "gh-pages" : "ng build --base-href /UrbanTicketSystemScannerFrontend/",
+    "gh-pages": "ng build --base-href /UrbanTicketSystemScannerFrontend/",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test --browsers=ChromeHeadless"
   },
   "private": true,
   "dependencies": {
